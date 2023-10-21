@@ -10,7 +10,7 @@ class Node:
         """
         self.start = start
         self.quantity_limit = 0
-        # tonnage_limits - это словарь словарей - где ключ это id(start) и 
+        # tonnage_limits - это словарь словарей - где ключ это id(start) и
         # для предыдущего значения  ( на примере на листочке для буквы С tonnage_limits будет хранится в букве А )
         # а значение - это словарь в котором 2 ключа длина пути(lenght), tonnage_limit - а значения их числовой эквивалент
         self.tonnage_limits = {}
@@ -48,4 +48,25 @@ class Graph:
         for node in self.nodes.values():
             connected_nodes = [f"Узел {n.start}" for n in node.next]
             print(
-                f"Узел {node.start} соединён с: {', '.join(connected_nodes)}")
+                f"Узел {node.start} соединён с: {', '.join(connected_nodes)} и имеет пропускную способность {node.quantity_limit}"
+            )
+    def find_all_quantity(self, start_node: Node) -> list[float]:
+        """
+        Находит пропускную способность для всех узлов, начиная с указанного узла.
+
+        :param start_node: Начальный узел, с которого начинается поиск пропускной способности.
+        :return: Список пропускных способностей для всех узлов, доступных из начального узла.
+        :rtype: list[float]
+        """
+        quantities = []
+        stack = [start_node]
+
+        while stack:
+            current_node = stack.pop()
+            quantities.append(current_node.quantity_limit)
+
+            for next_node in current_node.next:
+                stack.append(next_node)
+
+        return quantities
+

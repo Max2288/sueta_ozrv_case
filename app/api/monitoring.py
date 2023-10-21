@@ -1,10 +1,13 @@
 from fastapi import APIRouter
-from loguru import logger
 
 from app.api.log_route import LogRoute
+from app.services.graph_filling import fill_graph, generate_quantity
 
 
 router = APIRouter(route_class=LogRoute)
+test_graph = fill_graph('hackathon_sirius_data.csv')
+
+GRAPH = generate_quantity(test_graph)
 
 
 @router.get(
@@ -13,10 +16,22 @@ router = APIRouter(route_class=LogRoute)
 )
 def get_basic_line_chart():
     return {
-        "xAxis": ['22->54', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        "xAxis": [
+            "54 - 22",
+            "22 - 28",
+            "32 - 22",
+            "48 - 54",
+            "28 - 27",
+            "34 - 32",
+            "62 - 34",
+            "10 - 34",
+            "83 - 62",
+            "2 - 10",
+            "50 - 10"
+        ],
         "series": [
             {
-                "data": [150, 230, 224, 218, 135, 147, 260],
+                "data": [26, 51, 37, 5, 17, 102, 42, 20, 36, 33, 17],
                 "type": 'line'
             }
         ]
@@ -38,13 +53,13 @@ def get_waterfall_chart():
     "/pie",
     name="",
 )
-def get_waterfall_chart():
+def get_pie_chart():
     return {
         "data": [
-            {"value": 335, "name": 'Direct'},
-            {"value": 310, "name": 'Email'},
-            {"value": 274, "name": 'Union Ads'},
-            {"value": 235, "name": 'Video Ads'},
-            {"value": 400, "name": 'Search Engine'}
+            {"value": 1111, "name": 'Max'},
+            {"value": 444, "name": 'Marko'},
+            {"value": 211, "name": 'Vladik'},
+            {"value": 100, "name": 'Matvey'},
+            {"value": 100, "name": 'Semka'}
         ]
     }
