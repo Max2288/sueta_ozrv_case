@@ -50,8 +50,8 @@ function App() {
         const jsonData = await fetchJsonData(apiWaterfallUrl, "GET", headers);
         const waterfallChartOptions: WaterfallChartOptions = {
           title: {
-            text: 'Waterfall Chart',
-            subtext: 'Living Expenses in Shenzhen',
+            text: 'Грузоподъёмность',
+            subtext: 'На разные пути',
             padding: 20,
           },
           tooltip: {
@@ -100,11 +100,11 @@ function App() {
     const fetchPieData = async () => {
       try {
         const jsonData = await fetchJsonData(apiPieUrl, "GET", headers);
-        const data: [PieChartData]  = jsonData.data
+        const data: [PieChartData] = jsonData.data
         const pieChartOptions: PieChartOptions = {
           backgroundColor: '#2c343c',
           title: {
-            text: 'Customized Pie',
+            text: 'Вклад в проект',
             left: 'center',
             top: 20,
             textStyle: {
@@ -166,10 +166,15 @@ function App() {
   }, []);
 
 
-  
+
   return (
     <>
       <NavBarSearch />
+      <>
+        <BasicLineChartComponent option={bsLineChartOpt} width="100%" height="400px" />
+        <WaterfallChartComponent option={wfChartOpt} width="100%" height="400px" />
+        <PieChartComponent option={pChartOpt} width="100%" height="400px" />
+      </>
       <Routes>
         <Route
           path="/charts"
