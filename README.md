@@ -3,8 +3,8 @@
 
 # Инструция по запуску
 ```
-git clone https://github.com/Max2288/hakaton_2023
-cd hakaton_2023
+git clone https://github.com/Max2288/sueta_ozrv_case
+cd sueta_ozrv_case
 docker-compose -f local.docker-compose.yml up --build
 ```
 # Стек
