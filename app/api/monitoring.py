@@ -44,8 +44,22 @@ def get_basic_line_chart():
 )
 def get_waterfall_chart():
     return {
-        "xAxis":  ['Total', 'Rent', 'Utilities', 'Transportation', 'Meals', 'Other'],
-        "series": [2900, 1200, 300, 200, 900, 300]
+        "xAxis": [
+            'TonageLimit', 'TonageLimit', 'TonageLimit', 'TonageLimit', 'TonageLimit', 'TonageLimit', 'TonageLimit', 'TonageLimit', 'TonageLimit', 'TonageLimit',
+        ],
+        "series": [
+            277320,
+            2387478,
+            2343746,
+            12057,
+            2527097,
+            2344540,
+            1319106,
+            1888168,
+            476521,
+            143936,
+            624441
+        ]
     }
 
 
