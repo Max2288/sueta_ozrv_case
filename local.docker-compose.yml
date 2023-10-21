@@ -1,0 +1,40 @@
+version: "3.8"
+
+x-common-backend: &common-backend
+  build:
+    context: .
+    dockerfile: Dockerfile
+  image: monitoring-backend
+
+services:
+  system_monitoring_backend:
+    <<: *common-backend
+    container_name: monitoring-backend
+    user: backend_user
+    command:
+      [
+        "uvicorn",
+        "app.main:app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8000",
+        "--reload"
+      ]
+    ports:
+      - 8011:8000
+    restart: unless-stopped
+    env_file:
+      - .env.example
+    volumes:
+      - ./:/app/
+
+  system_monitoring_frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: monitoring-frontend
+    ports:
+      - 8010:80
+    restart: unless-stopped
+
